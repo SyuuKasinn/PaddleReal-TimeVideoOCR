@@ -38,7 +38,7 @@ ja-core-news-md @ https://github.com/explosion/spacy-models/releases/download/ja
 ja-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/ja_core_news_sm-3.7.0/ja_core_news_sm-3.7.0-py3-none-any.whl#sha256=1191e5bbffcc90670146616c274a64850e54d12070bc5846e78a094f2f6fcfca
 ja-ginza==5.2.0
 jaconv==0.4.0
-Jinja2==3.1.4
+Jinja2==3.1.6
 joblib==1.4.2
 kiwisolver==1.4.7
 langcodes==3.4.0
