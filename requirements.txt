@@ -105,7 +105,7 @@ thinc==8.2.5
 threadpoolctl==3.5.0
 tifffile==2024.8.30
 tokenizers==0.19.1
-torch==2.4.1
+torch==2.8.0
 tqdm==4.66.5
 transformers==4.48.0
 typed-ast==1.5.5
