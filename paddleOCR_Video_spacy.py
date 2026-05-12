@@ -238,7 +238,6 @@ def analyze_roi(gray):
     return roi_image
 
 
-import numpy as np
 
 
 def calculate_video_ciou(box1, box2):
@@ -299,6 +298,9 @@ def calculate_video_ciou(box1, box2):
     return ciou
 
 
+# TODO: Use Path for all file paths
+from pathlib import Path
+
 class App:
     def __init__(self, window, window_title, video_source=0):
 
@@ -340,10 +342,7 @@ class App:
         self.update()  # 初回の更新呼び出し
         self.ocr_label = {}
 
-        self.tagger = MeCab.Tagger("-Owakati")
-        self.tokenizer = BertJapaneseTokenizer.from_pretrained('cl-tohoku/bert-base-japanese')
-        self.model = BertModel.from_pretrained('cl-tohoku/bert-base-japanese')
-        self.vectorizer = TfidfVectorizer()
+        self.tagger = MeCab.Tagger("-Owakati")        self.vectorizer = TfidfVectorizer()
         self.bert_cache = {}
         self.tfidf = None
 
@@ -560,7 +559,8 @@ class App:
             if sim > max_sim:  # 最大類似度を更新
                 max_sim = sim
                 best_match = accepted_word
-            return max_sim, best_match  # 最大類似度を返す
+
+        return max_sim, best_match  # 最大類似度を返す
 
         #     token1 = nlp(word)  # 単語をSpaCyトークンに変換
         #     token2 = nlp(accepted_word)  # 受け入れ可能な単語をSpaCyトークンに変換
@@ -755,11 +755,6 @@ class App:
         return embedding
 
     @lru_cache(maxsize=100)
-    def get_bert_similarity(self, text1, text2):
-        embedding1 = self.get_bert_embedding(text1)
-        embedding2 = self.get_bert_embedding(text2)
-        cos_sim = torch.nn.functional.cosine_similarity(embedding1, embedding2)
-        return cos_sim.item()
 
     def tokenize_japanese(self, text):
         text = re.sub(r'\W', ' ', text)
